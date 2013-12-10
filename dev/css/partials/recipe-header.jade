@@ -1,0 +1,7 @@
+.recipe-header-b.cf
+	.recipe-preview-e
+	.header-be 			#{ data.header || ''}
+	.description-be #{ data.description || ''}
+	.ago-be 				by 
+		a(href="#", class="is-hoverable") #{ data.author || '' }
+		i , #{ data.ago || 'just now' }

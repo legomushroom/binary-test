@@ -1,0 +1,131 @@
+// BLOCKS
+@import '../assets/imports.styl'
+
+/* 2d1fab40da35f011158b6d925d885e4d */
+.round-icon-b
+	border 2px solid c-red
+	border-radius 50%
+	rect 7*gs
+	padding-top 1px
+
+	.icon
+		margin-top  gs
+		margin-left 1.5*gs
+
+	&.is-like-message
+		.icon
+			margin-top  1.25*gs
+			margin-left 1.25*gs
+	
+	/* 1b741f34c3ead6764b6bb32b801f4bcd */
+	&.is-bg
+		border 2px solid c-bg
+		.icon
+			fill c-bg
+		
+		/* 906856403f4d4034b402ba201a4709ae */
+		&.is-hoverable:hover
+			cursor pointer
+			border 2px solid c-bg-hover
+			// 4!
+			.icon
+				fill c-bg-hover
+
+
+
+/* 72cc54b79ee801bfc76efed589955b5 */
+.main-logo-b
+	padding-top 1px
+	color c-red
+	display block
+
+	.icon
+		float left
+		rect 6*gs
+
+	> .text-be
+		font-size 3.5*gs
+		margin-left 7*gs
+		margin-top  2*gs
+
+/* cf0436b439ccd7682cb39acb96fee749 */
+timerWidth = 9*gs
+.timer-b
+	position: relative
+	color c-red
+	width timerWidth
+
+	> .text-be
+		font-family Impact
+		position: absolute
+		font-size 1.75*gs 
+		font-weight 100
+		top 1.5*gs
+		width: 100%
+		text-align center
+		margin-left 2px
+		
+	.icon
+		rect timerWidth
+
+recipeMarginLeft = 35.5*gs
+.recipe-b
+	padding 8*gs 0
+	position relative
+
+	&:hover
+		.side-icons-l
+			display block
+			opacity 1
+			-webkit-transition-duration 0
+			-moz-transition-duration 0
+			-ms-transition-duration 0
+			-o-transition-duration 0
+			transition-duration 0
+
+	&.is-expanded
+		.recipe-body-b
+			height auto
+
+	.recipe-body-b
+		margin-left recipeMarginLeft
+		height 0
+		overflow hidden
+
+	.side-icons-l
+		position: absolute
+		position: absolute
+		right - 13*gs
+		top 8*gs
+		// display none
+		crossTransition opacity .5s ease-out
+		opacity 0
+
+/* 516dc04f51893a5d1dbff04a2c995f72 */
+.recipe-body-b
+	> .text-bl
+		color c-grey5
+		font-size 4.5*gs
+		line-height 6*gs
+
+/* c53d5dc9d1b33c8f73baa1ea4d088a26 */
+.recipe-header-b
+	color c-grey5
+	position: relative
+	.recipe-preview-e
+		float left
+
+	> .header-be,  .description-be, > .ago-be
+		margin-left recipeMarginLeft
+
+	> .header-be
+		font-size 	9*gs
+		margin-top 2.5*gs
+
+	> .description-be
+		font-size 	4.5*gs
+		margin-top gs
+	> .ago-be
+		margin-top 2*gs
+		font-size 	3*gs
+

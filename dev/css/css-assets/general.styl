@@ -1,0 +1,188 @@
+// GENERAL
+@import '../assets/imports.styl'
+
+*
+	bbox()
+
+body, html
+	min-rect 100%
+	margin 0
+	padding 0
+	overflow-x hidden
+
+body
+	background-color c-bg
+	font-family 'infinity', monospace
+	letter-spacing 1px
+
+@css{
+	::selection{
+		background-color: #f59995;
+	  color: white;
+	  text-shadow: none;
+	}
+
+	::-moz-selection{
+		background-color: #f59995;
+	  color: white;
+	  text-shadow: none;
+	}
+	
+}
+
+
+// COLORS
+.c-grey1-g
+	color c-grey1
+.c-grey2-g
+	color c-grey2
+.c-grey2-hover-g
+	color c-grey2-hover
+
+.c-grey3-g
+	color c-grey3
+// COLORS
+
+// FONT
+.line-thru-gm, .line-through-gm
+	position: relative
+	&:after
+		content ''
+		position: absolute
+		top 50%
+		left 0
+		width 100%
+		margin-top 1px
+		border-top 2px solid
+
+.bold-gm
+	font-weight bold
+
+// FONT
+
+
+.op-0-gm
+	opacity 0
+.op-5-gm
+	opacity .5
+
+a, .link-e
+	text-decoration none
+	position relative
+	color inherit
+ 
+	&.is-hoverable, &.is-check
+		&:after
+			content ''
+			position absolute
+			display none
+			color inherit
+
+			width 100%
+			height 0
+			left -1px
+
+			bottom - (gs/2)
+			border-top 4px solid c-red
+
+		&:hover
+			// 4!
+			&:after
+				display block
+
+	// &.is-grey3
+	// 	color c-grey3
+	// 	&:after
+	// 		border-top-color    c-grey3
+	// 		border-bottom-color c-grey3		
+
+	// &.is-grey2-hover
+	// 	color c-grey2-hover
+	// 	&:after
+	// 		border-top-color    c-grey2-hover
+	// 		border-bottom-color c-grey2-hover
+
+	// &.is-grey2--onhover
+	// 	&:hover
+	// 		color c-grey2
+
+	// 		&:after
+	// 			border-top-color    c-grey2
+	// 			border-bottom-color c-grey2		
+
+	&.is-check
+		&:after
+			display block
+	
+
+.f-s-x3-g
+	font-size 3*gs
+
+.f-s-x4-g
+	font-size 4*gs
+
+.float-left-g,  .f-l-g
+	float left
+.float-right-g, .f-r-g
+	float right
+
+
+.h-g
+	display none
+.h-g-i
+	display none II
+
+
+// CLEARFIX
+.cf:after,
+.cf:before {
+    content: '';
+    display: table;
+}
+.cf:after {
+    clear: both;
+}
+.cf {
+    zoom: 1;
+}
+
+
+metrics()
+	maxSize = 100
+	short = w h
+	long  = width height
+	for property, j in long
+		for i in 1..maxSize
+			.{property}-x{i}-gm, .{short[j]}-x{i}-gm
+				{property} i*gs
+	
+	maxSize = 20
+	short = m p
+	long  = margin padding
+	for property, j in long
+		for i in 1..maxSize
+			shortSide = -l -r -t -b ''
+			longSide  = -left -right -top -bottom ''
+			for prop, x in longSide
+
+				.{property}{prop}-x{i}-gm, .{short[j]}{shortSide[x]}-x{i}-gm
+					{property}{prop} i*gs
+
+
+colors()
+	colors 		=   c-bg    c-red   c-orange1   c-orange2   c-grey1   c-grey2   c-grey3   c-grey4   c-grey5    c-grey6  c-grey7  c-grey8  c-grey9  c-grey10
+	colorsNames = 'c-bg' 'c-red' 'c-orange1' 'c-orange2' 'c-grey1' 'c-grey2' 'c-grey3' 'c-grey4' 'c-grey5' 'c-grey6'  'c-grey7' 'c-grey8' 'c-grey9' 'c-grey10'
+	for color, i in colors
+		.{colorsNames[i]}-bg-g
+			background-color color
+			
+metrics()
+colors()
+
+// // ADD THIS SOCIAL WIDGET
+// #at16lb
+// 	opacity 0 !important
+// #at15s
+// 	display none !important
+// 	opacity 0 !important
+// // ADD THIS SOCIAL WIDGET

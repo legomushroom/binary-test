@@ -1,0 +1,180 @@
+!!!5
+html
+	head
+		meta(charset='UTF-8')
+		title Binary cookbook ui-kit
+		link(rel="stylesheet", type="text/css", href="main.css")
+		link(rel="stylesheet", type="text/css", href="css-assets/kit.css")
+		script(src="css-assets/font/specimen_files/easytabs.js", type="text/javascript",charset="utf-8")
+		link(rel="stylesheet", href="css-assets/font/stylesheet.css", type="text/css", charset="utf-8")
+	body
+		include icons.svg
+		.main-kl
+			.section-kl
+				.header-ke Colors
+				.cf 
+					.color-sample-ke.c-grey1-bg-g
+					.color-sample-ke.c-grey2-bg-g
+					.color-sample-ke.c-grey3-bg-g
+					.color-sample-ke.c-grey4-bg-g
+					.color-sample-ke.c-grey5-bg-g
+					.color-sample-ke.c-grey6-bg-g
+					.color-sample-ke.c-grey7-bg-g
+					.color-sample-ke.c-grey8-bg-g
+					.color-sample-ke.c-grey9-bg-g
+					.color-sample-ke.c-grey10-bg-g
+
+				.cf
+					.color-sample-ke.c-red-bg-g
+					.color-sample-ke.c-orange1-bg-g
+					.color-sample-ke.c-orange2-bg-g
+					.color-sample-ke.c-bg-bg-g
+
+			- var data = {}
+
+			.section-kl
+				.header-ke Icons
+				.cf 
+					.icon-sample-kl
+						.hash-e 7a570084fcf17dfd19f27128300c8648
+						- var data = { path: 'old-pen-icon' }
+						include partials/icon
+
+					.icon-sample-kl
+						.hash-e 5efc03e9148bb7bf6b88dc63d9ac2665
+						- var data = { path: 'pen-icon' }
+						include partials/icon
+
+					.icon-sample-kl
+						.hash-e 445954a8106475593ccb82c55d148e70
+						- var data = { path: 'timer-icon' }
+						include partials/icon
+
+					.icon-sample-kl
+						.hash-e 87e0098a23a1f67c628add1c8e7d098b
+						- var data = { path: 'trash-icon' }
+						include partials/icon
+
+					.icon-sample-kl
+						.hash-e 87e0098a23a1f67c628add1c8e7d098b
+						- var data = { path: 'like-message-icon' }
+						include partials/icon
+
+					.icon-sample-kl
+						.hash-e 71b6d15fc65e1e254d3b058563e7274b
+						- var data = { path: 'time-machine-icon' }
+						include partials/icon
+
+					.icon-sample-kl
+						.hash-e 2559e6358e0dda1b38099d6489f79431
+						- var data = { path: 'cookbook-icon' }
+						include partials/icon
+
+
+			.section-kl
+				.header-ke Elements
+				.hash-e b69a1e4a33a526ed9af2af493cfb4cb1
+				.recipe-preview-e
+
+				.hash-e cf0436b439ccd7682cb39acb96fee749
+				- data = { time: '55\'' }
+				include partials/timer
+
+				.hash-e feb03c3fd9a570d91898fa4168083412
+				- data = { time: '52\'' }
+				include partials/side-icons
+
+				.hash-e 2d1fab40da35f011158b6d925d885e4d
+				- data = { iconPath: 'old-pen-icon' }
+				include partials/round-icon
+
+				.hash-e 98ac35df6454ac8ddd0e57d100bdf752
+				- data = { iconPath: 'like-message-icon', class: 'is-like-message' }
+				include partials/round-icon
+
+				.hash-e 1b741f34c3ead6764b6bb32b801f4bcd
+				- data = { iconPath: 'like-message-icon', class: 'is-like-message is-bg' }
+				include partials/round-icon
+
+				.hash-e 906856403f4d4034b402ba201a4709ae
+				- data = { iconPath: 'like-message-icon', class: 'is-like-message is-bg is-hoverable' }
+				include partials/round-icon
+
+				.hash-e 072cc54b79ee801bfc76efed589955b5
+				include partials/main-logo
+
+				.hash-e dd04606902318dfad515e02a3c14ffac
+				.header-l(class="position:relative")
+					- data = { iconPath: 'like-message-icon', class: 'is-like-message is-bg is-hoverable' }
+					include partials/round-icon
+					
+					- data = { iconPath: 'old-pen-icon', class: 'is-bg is-hoverable' }
+					include partials/round-icon
+
+					include partials/main-logo
+
+				.hash-e 516dc04f51893a5d1dbff04a2c995f72
+				- data = { text: 'So, Tony, this is the section about Getting Started EndDash is a two-way binding javascript templating framework built on top of semantic HTML. <br> <br> In its current release, EndDash relies on Backbone objects. See the dependency section for further details.' }
+				include partials/recipe-body 
+
+				.hash-e c53d5dc9d1b33c8f73baa1ea4d088a26
+				- var data = { header: 'ChocoTaco', description: 'lean mean and full of caffeine', author: 'Gumball', ago: null }
+				include partials/recipe-header
+
+				.hash-e a5b9d965a2368808e1dcce56ea116834
+				.recipe-b
+					- var data = { header: 'ChocoTaco', description: 'lean mean and full of caffeine', author: 'Gumball', ago: '4 days ago' }
+					include partials/recipe-header
+					- data = { text: 'So, Tony, this is the section about Getting Started EndDash is a two-way binding javascript templating framework built on top of semantic HTML. <br> <br> In its current release, EndDash relies on Backbone objects. See the dependency section for further details.' }
+					include partials/recipe-body 
+
+				.hash-e e744aae675715453dd43b2b4371dd528
+				.recipes-l
+					.recipe-b
+						- var data = { header: 'ChocoTaco', description: 'lean mean and full of caffeine', author: 'Gumball', ago: '4 days ago' }
+						include partials/recipe-header
+						- data = { text: 'So, Tony, this is the section about Getting Started EndDash is a two-way binding javascript templating framework built on top of semantic HTML. <br> <br> In its current release, EndDash relies on Backbone objects. See the dependency section for further details.' }
+						include partials/recipe-body 
+
+						- data = { time: '52\'' }
+						include partials/side-icons
+
+					.recipe-b
+						- var data = { header: 'ChocoTaco', description: 'lean mean and full of caffeine', author: 'Gumball', ago: '4 days ago' }
+						include partials/recipe-header
+						- data = { text: 'So, Tony, this is the section about Getting Started EndDash is a two-way binding javascript templating framework built on top of semantic HTML. <br> <br> In its current release, EndDash relies on Backbone objects. See the dependency section for further details.' }
+						include partials/recipe-body 
+
+						- data = { time: '52\'' }
+						include partials/side-icons
+
+					.recipe-b.is-expanded
+						- var data = { header: 'ChocoTaco', description: 'lean mean and full of caffeine', author: 'Gumball', ago: '4 days ago' }
+						include partials/recipe-header
+						- data = { text: 'So, Tony, this is the section about Getting Started EndDash is a two-way binding javascript templating framework built on top of semantic HTML. <br> <br> In its current release, EndDash relies on Backbone objects. See the dependency section for further details.' }
+						include partials/recipe-body 
+
+						- data = { time: '52\'' }
+						include partials/side-icons
+
+
+
+
+
+
+					
+
+
+
+
+				
+
+
+
+
+
+
+
+
+
+

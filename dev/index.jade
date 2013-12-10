@@ -1,0 +1,58 @@
+!!!5
+html
+	head
+		meta(charset='UTF-8')
+		title iconmelon
+		link(href="favicon.ico", rel="icon", type="image/png")
+		link(rel="stylesheet", type="text/css", href="css/main.css")
+
+		//- for Google 
+		meta(name='description', content='svg icons library for web')
+		meta(name='keywords', content='svg library, web, css managable')
+		meta(name='author', content='LegoMushroom')
+		meta(name='copyright', content='LegoMushroom, MIT')
+		meta(name='application-name', content='iconmelon')
+		//- for Facebook 
+		meta(property='og:title', content='iconmelon')
+		meta(property='og:type', content='website')
+		meta(property='og:image', content='http://iconmelon.com/css/icons/logo-large.png')
+		meta(property='og:url', content='http://iconmelon.com')
+		meta(property='og:description', content='svg icons library for web')
+		//- for Twitter 
+		meta(name='twitter:card', content='summary')
+		meta(name='twitter:title', content='iconmelon')
+		meta(name='twitter:description', content='svg icons library for web')
+		meta(name='twitter:image', content='http://iconmelon.com/css/icons/logo-large.png')
+
+	body
+		.blinded-e#js-blinded.h-gm
+		#js-svg-wrap	
+			include css/icons.svg
+
+		.header-l#js-main-header
+			- data = { iconPath: 'like-message-icon', class: 'is-like-message is-bg is-hoverable' }
+			include css/partials/round-icon
+			
+			- data = { iconPath: 'old-pen-icon', class: 'is-bg is-hoverable' }
+			include css/partials/round-icon
+
+			include css/partials/main-logo
+
+		section(role="main")#main
+
+		
+
+		script(id="pagination-template", type="template")
+			//- include templates/pagination
+
+		script(type='text/javascript', src='js/lib/require.js', data-main='js/main')
+
+
+
+
+
+
+
+
+
+

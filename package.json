@@ -1,0 +1,32 @@
+{
+  "name": "binary-cookbook",
+  "version": "0.1.5-9",
+  "license": "MIT",
+  "author": {
+    "name": "LegoMushroom",
+    "email": "legomushroom@gmail.com",
+    "url": "http://legomushroom.com"
+  },
+  "private": false,
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "express": "3.3.7",
+    "jade": "latest",
+    "mongoose": "*",
+    "socket.io": "latest",
+    "cheerio": "latest",
+    "node-promise": "latest",
+    "lodash": "latest",
+    "node-native-zip-compression": "latest",
+    "MD5": "latest",
+    "mkdirp": "latest",
+    "node-markdown": "latest",
+    "cookies": "latest",
+    "pretty-data": "latest"
+  },
+  "devDependencies": {
+    "nodemon": "*"
+  }
+}
