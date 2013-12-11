@@ -17,6 +17,8 @@ define 'views/pages/main', ['views/pages/PageView', 'collectionViews/RecipesColl
 										isRender: true
 										$el: @$('#js-recipes-place')
 
+			App.recipesCollection = @recipes
+
 
 	Main
 

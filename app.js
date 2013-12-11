@@ -107,7 +107,7 @@
         return callback(null, docs);
       });
     });
-    socket.on("recipes:delete", function(data, callback) {
+    socket.on("recipe:delete", function(data, callback) {
       return Recipe.findById(data.id, function(err, doc) {
         if (err) {
           callback(500, 'DB error');
@@ -117,7 +117,7 @@
         }
         return doc.remove(function(err) {
           if (err) {
-            callback(500, 'fs error');
+            callback(500, 'DB error');
             return console.error(err);
           } else {
             return callback(null, 'ok');
@@ -125,7 +125,7 @@
         });
       });
     });
-    return socket.on("recipe:update", function(data, callback) {
+    socket.on("recipe:update", function(data, callback) {
       return Recipe.findById(data.id, function(err, doc) {
         var id;
 
@@ -151,6 +151,16 @@
             return callback(data, 'ok');
           }
         });
+      });
+    });
+    return socket.on("recipe:create", function(data, callback) {
+      return new Recipe(data).save(function(err, doc) {
+        if (err) {
+          callback(500, 'DB error');
+          return console.error(err);
+        } else {
+          return callback(null, doc.toJSON());
+        }
       });
     });
   });

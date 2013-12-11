@@ -69,6 +69,9 @@
         App.$window = $(window);
         this.$mainHeader = $('#js-main-header');
         App.$blinded = $('#js-blinded');
+        $('#js-add-recipe').on('click', function() {
+          return App.recipesCollection.addNew();
+        });
         App.router = new Router;
         Backbone.history.start();
         App.start();

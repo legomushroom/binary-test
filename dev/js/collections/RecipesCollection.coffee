@@ -2,4 +2,7 @@ define 'collections/RecipesCollection', ['collections/PaginatedCollection', 'bac
 	class RecipesCollection extends B.Collection
 		url: 'recipes'
 		model: RecipeModel
+
+		addNew:-> @add({ isEditMode: true, isNew: true }, { at: @length }); @
+
 	RecipesCollection

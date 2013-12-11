@@ -8,8 +8,9 @@ define 'models/RecipeModel', ['models/ProtoModel', 'helpers'], (ProtoModel, help
 			'author': 				'Author'
 			'authorLink':			'http://legomushroom.com/'
 			'image': 					'taco.png'
-			'ago': 						'added ago'
+			'ago': 						'0 added ago'
 			'text': 					'text'
 			'estimatedTime': 	'5\''
+			'versions': 			[]
 
 	RecipeModel

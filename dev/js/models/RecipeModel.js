@@ -23,9 +23,10 @@
         'author': 'Author',
         'authorLink': 'http://legomushroom.com/',
         'image': 'taco.png',
-        'ago': 'added ago',
+        'ago': '0 added ago',
         'text': 'text',
-        'estimatedTime': '5\''
+        'estimatedTime': '5\'',
+        'versions': []
       };
 
       return RecipeModel;

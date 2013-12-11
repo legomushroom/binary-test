@@ -8,6 +8,8 @@ define 'collectionViews/RecipesCollectionView', ['collectionViews/ProtoCollectio
 			super
 			@
 
+		appendHtml:(cv, iv, i)-> (if iv.model.get('isNew') then cv.$el.prepend(iv.el) else cv.$el.append iv.el); @
+
 
 	RecipesCollectionView
 

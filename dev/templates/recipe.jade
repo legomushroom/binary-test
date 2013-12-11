@@ -10,7 +10,7 @@
 .recipe-body-b
 	.text-bl(contenteditable="<%= (isEditMode) %>", id="js-body") !{ '<%= text %>' }
 
-.side-icons-l
+.side-icons-l(class="<%= (versions == false) ? 'is-no-timemachine' : '' %>")
 	.timer-b(title="estimated cook time")
 		.text-be(contenteditable="<%= (isEditMode) %>", id="js-estimated") #{ '<%= estimatedTime %>' }
 		- var data = { path: 'timer-icon' }

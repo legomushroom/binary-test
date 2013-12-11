@@ -153,15 +153,15 @@
 
 </svg>
     </div>
-    <div id="js-main-header" class="header-l op-0-g">
-      <div class="round-icon-b is-like-message is-bg is-hoverable">
-        <div id="" title="" class="icon ">
-          <svg viewBox="0 0 32 32">
-            <use xlink:href="#like-message-icon"></use>
-          </svg>
-        </div>
-      </div>
-      <div class="round-icon-b is-bg is-hoverable">
+    <div id="js-main-header" class="header-l op-0-g"><a href="mailto:legomushroom@gmail.com">
+        <div id="" class="round-icon-b is-like-message is-bg is-hoverable m-l-x2-g">
+          <div id="" title="" class="icon ">
+            <svg viewBox="0 0 32 32">
+              <use xlink:href="#like-message-icon"></use>
+            </svg>
+          </div>
+        </div></a>
+      <div id="js-add-recipe" class="round-icon-b is-bg is-hoverable">
         <div id="" title="" class="icon ">
           <svg viewBox="0 0 32 32">
             <use xlink:href="#old-pen-icon"></use>
@@ -191,7 +191,7 @@
       <div class="recipe-body-b">
         <div contenteditable="&lt;%= (isEditMode) %&gt;" id="js-body" class="text-bl"><%= text %></div>
       </div>
-      <div class="side-icons-l">
+      <div class="side-icons-l &lt;%= (versions == false) ? 'is-no-timemachine' : '' %&gt;">
         <div title="estimated cook time" class="timer-b">
           <div contenteditable="&lt;%= (isEditMode) %&gt;" id="js-estimated" class="text-be">&lt;%= estimatedTime %&gt;</div>
           <div id="" title="" class="icon ">
@@ -221,9 +221,7 @@
         <div id="js-save" class="btn-b is-inactive">  Save</div>
       </div>
     </script>
-    <script id="recipes-collection-template" type="template">
-      <div></div>
-    </script>
+    <script id="recipes-collection-template" type="template">&nbsp;</script>
     <script type="text/javascript" src="js/lib/require.js" data-main="js/main"></script>
   </body>
 </html>

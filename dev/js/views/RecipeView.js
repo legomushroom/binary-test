@@ -56,7 +56,9 @@
         e.stopPropagation();
         if (confirm("Are you sure whant to remove \"" + ($.trim(this.model.get('header'))) + "\" item?")) {
           this.$el.fadeOut(500, function() {
-            return _this.model.destroy();
+            return _this.model.destroy().then(function() {
+              return _this.teardown();
+            });
           });
         }
         return this;
@@ -89,22 +91,41 @@
       };
 
       RecipeView.prototype.save = function(e) {
+        var _this = this;
+
         if (!this.isActive) {
           return false;
         }
-        this.model.set(this.getFromDom());
-        this.model.set('versions', this.model.get('versions') + 1);
-        this.model.save();
+        this.isActive && this.model.set(this.getFromDom());
+        if (!this.model.get('isNew')) {
+          this.model.set('versions', this.model.get('versions') + 1);
+        } else {
+          this.model.set('isNew', false);
+        }
+        this.model.save().then(function(data) {
+          return _this.model.id = data.id;
+        });
         this.cancel();
         return false;
       };
 
       RecipeView.prototype.cancel = function(e) {
+        if (this.model.get('isNew')) {
+          this.model.destroy();
+          this.teardown();
+          return false;
+        }
         this.model.set('isEditMode', false);
         App.$bodyHtml.animate({
           'scrollTop': this.$el.offset().top - 150
         });
         return false;
+      };
+
+      RecipeView.prototype.teardown = function() {
+        RecipeView.__super__.teardown.apply(this, arguments);
+        this.$el.remove();
+        return this;
       };
 
       return RecipeView;

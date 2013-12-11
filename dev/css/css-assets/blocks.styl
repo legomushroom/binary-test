@@ -15,7 +15,7 @@ shadowSize = 2px
 	color white
 	cursor pointer
 	border-radius br
-	box-shadow shadowSize shadowSize 0 rgba(rgb(c-grey1), .25)
+	box-shadow shadowSize shadowSize 0 rgba(rgb(c-grey6), .5)
 	font-size 20px
 	text-align center
 
@@ -130,6 +130,7 @@ timerWidth = 9*gs
 	> .text-be
 		font-family Impact
 		position: relative
+		z-index: 1
 		font-size 1.75*gs 
 		font-weight 100
 		top 3.5*gs
@@ -192,9 +193,11 @@ recipeMarginLeft = 35.5*gs
 		position: absolute
 		right - 13*gs
 		top 6*gs
-		// display none
-		crossTransition opacity .5s ease-out
+		crossTransition all .5s ease-out
 		opacity 0
+
+		&.is-no-timemachine
+			top 8.5*gs
 
 /* 516dc04f51893a5d1dbff04a2c995f72 */
 .recipe-body-b
@@ -218,7 +221,7 @@ recipeMarginLeft = 35.5*gs
 
 	> .header-be
 		font-size 	9*gs
-		margin-top 2.5*gs
+		margin-top 	4*gs
 
 	> .description-be
 		font-size 	4.5*gs

@@ -32,9 +32,7 @@ define 'views/RecipeView', ['views/ProtoView', 'models/RecipeModel'], (ProtoView
 			e.stopPropagation()
 
 			if (confirm("Are you sure whant to remove \"#{ $.trim(@model.get('header')) }\" item?"))
-				@$el.fadeOut 500, =>
-						@model.destroy()
-
+				@$el.fadeOut 500, => @model.destroy().then => @teardown()
 			@
 
 
@@ -60,16 +58,24 @@ define 'views/RecipeView', ['views/ProtoView', 'models/RecipeModel'], (ProtoView
 		save:(e)->
 			return false if !@isActive
 
-			@model.set 	@getFromDom()
-			@model.set 'versions', @model.get('versions')+1
+			@isActive and @model.set 	@getFromDom()
+			if !@model.get('isNew') 
+				@model.set 'versions', @model.get('versions')+1
+			else @model.set 'isNew', false
 
-			@model.save(); @cancel()
+			@model.save().then((data)=> @model.id = data.id ); @cancel()
 			false
 
 		cancel:(e)->
+			if @model.get('isNew') 
+				@model.destroy(); @teardown()
+				return false
+
 			@model.set 'isEditMode', false
 			App.$bodyHtml.animate 'scrollTop': @$el.offset().top - 150
 			false
+
+		teardown:-> super; @$el.remove(); @
 
 
 

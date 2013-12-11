@@ -19,6 +19,16 @@
 
       RecipesCollection.prototype.model = RecipeModel;
 
+      RecipesCollection.prototype.addNew = function() {
+        this.add({
+          isEditMode: true,
+          isNew: true
+        }, {
+          at: this.length
+        });
+        return this;
+      };
+
       return RecipesCollection;
 
     })(B.Collection);

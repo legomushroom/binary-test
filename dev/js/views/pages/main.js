@@ -28,13 +28,14 @@
         var _this = this;
 
         this.recipes = new RecipesCollection;
-        return this.recipes.fetch().then(function() {
+        this.recipes.fetch().then(function() {
           return _this.recipesView = new RecipesCollectionView({
             collection: _this.recipes,
             isRender: true,
             $el: _this.$('#js-recipes-place')
           });
         });
+        return App.recipesCollection = this.recipes;
       };
 
       return Main;

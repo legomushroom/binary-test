@@ -24,6 +24,15 @@
         return this;
       };
 
+      RecipesCollectionView.prototype.appendHtml = function(cv, iv, i) {
+        if (iv.model.get('isNew')) {
+          cv.$el.prepend(iv.el);
+        } else {
+          cv.$el.append(iv.el);
+        }
+        return this;
+      };
+
       return RecipesCollectionView;
 
     })(ProtoView);

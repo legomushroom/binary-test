@@ -69,6 +69,9 @@ define 'main', ['marionette', 'router', 'socketio', 'helpers', 'backbone.iobind'
 			App.$blinded 	= $('#js-blinded')
 			# App.$toTops 	= $('.js-to-top')
 
+			$('#js-add-recipe').on 'click', ->
+				App.recipesCollection.addNew()
+
 
 			App.router = new Router
 			Backbone.history.start()

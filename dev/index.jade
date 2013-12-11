@@ -30,10 +30,11 @@ html
 			include css/icons.svg
 
 		.header-l.op-0-g#js-main-header
-			- data = { iconPath: 'like-message-icon', class: 'is-like-message is-bg is-hoverable' }
-			include css/partials/round-icon
+			a(href="mailto:legomushroom@gmail.com")
+				- data = { iconPath: 'like-message-icon', class: 'is-like-message is-bg is-hoverable m-l-x2-g' }
+				include css/partials/round-icon
 			
-			- data = { iconPath: 'old-pen-icon', class: 'is-bg is-hoverable' }
+			- data = { iconPath: 'old-pen-icon', idAttribute: 'js-add-recipe', class:'is-bg is-hoverable' }
 			include css/partials/round-icon
 
 			include css/partials/main-logo

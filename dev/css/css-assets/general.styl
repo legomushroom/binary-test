@@ -155,7 +155,7 @@ metrics()
 	long  = width height
 	for property, j in long
 		for i in 1..maxSize
-			.{property}-x{i}-gm, .{short[j]}-x{i}-gm
+			.{property}-x{i}-g, .{short[j]}-x{i}-g
 				{property} i*gs
 	
 	maxSize = 20
@@ -167,7 +167,7 @@ metrics()
 			longSide  = -left -right -top -bottom ''
 			for prop, x in longSide
 
-				.{property}{prop}-x{i}-gm, .{short[j]}{shortSide[x]}-x{i}-gm
+				.{property}{prop}-x{i}-g, .{short[j]}{shortSide[x]}-x{i}-g
 					{property}{prop} i*gs
 
 

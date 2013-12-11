@@ -62,21 +62,20 @@ io.sockets.on "connection", (socket) ->
             doc.versions = doc.versions.length
           callback null, docs
 
-  socket.on "recipes:delete", (data, callback) ->
-       Recipe.findById data.id, (err, doc)->
+  socket.on "recipe:delete", (data, callback) ->
+    Recipe.findById data.id, (err, doc)->
+      if err
+        callback 500, 'DB error'
+        console.error err
+      else callback null, 'ok'
+
+      doc.remove (err)->
         if err
           callback 500, 'DB error'
           console.error err
         else callback null, 'ok'
 
-        doc.remove (err)->
-          if err
-            callback 500, 'fs error'
-            console.error err
-          else callback null, 'ok'
-
   socket.on "recipe:update", (data, callback) ->
-
     Recipe.findById data.id, (err, doc)->
       if err
         callback 500, 'DB error'
@@ -95,39 +94,14 @@ io.sockets.on "connection", (socket) ->
         else callback data, 'ok'
 
 
-#   socket.on "section:create", (data, callback) ->
-#       data.moderated = false
-#       data.createDate = new Date
-#       new Section(data).save (err)->
-#         if err
-#           callback 500, 'DB error'
-#           console.error err
-#         else callback null, 'ok'
+  socket.on "recipe:create", (data, callback) ->
+      new Recipe(data).save (err, doc)->
+        if err
+          callback 500, 'DB error'
+          console.error err
+        else callback null, doc.toJSON()
 
-#   socket.on "section:update", (data, callback) ->
-#     Secret.find {}, (err, docs)->
-#       if docs[0].hash isnt socket.getCookie 'secret' then callback(405, 'no, sorry'); return
 
-#       id = data.id; delete data._id
-#       Section.update {'_id':id}, data, {upsert:true}, (err)->
-#         main.generateMainPageSvg().then =>
-#           if err
-#             callback 500, 'DB error'
-#             console.error err
-#           else callback null, 'ok'
-
-#   socket.on "section:delete", (data, callback) ->
-#     Secret.find {}, (err, docs)->
-#       Section.findById data.id, (err, doc)->
-#         if err
-#           callback 500, 'DB error'
-#           console.error err
-#         else callback null, 'ok'
-#         doc.remove (err)->
-#           if err
-#             callback 500, 'fs error'
-#             console.error err
-#           else callback null, 'ok'
 
 app.get '/gen', (req,res,next)->
   for i in [1..11]

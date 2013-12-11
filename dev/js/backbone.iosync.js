@@ -76,7 +76,7 @@ define('backbone.iosync', ['backbone', 'socketio'], function(Backbone){
         defer.reject();
       } else {
         if(options.success) options.success(data);
-        defer.resolve();
+        defer.resolve(data);
       }
     });
     var promise = defer.promise();
