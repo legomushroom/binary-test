@@ -11,11 +11,14 @@ define 'views/pages/main', ['views/pages/PageView', 'collectionViews/RecipesColl
 
 		renderRecipesList:->
 			@recipes = new RecipesCollection
+											isPaginated: true
+											pageNum: 1
 			@recipes.fetch().then =>
 				@recipesView = new RecipesCollectionView
-										collection: @recipes
-										isRender: true
-										$el: @$('#js-recipes-place')
+									collection: @recipes
+									isRender: true
+									$el: @$('#js-recipes-place')
+
 
 			App.recipesCollection = @recipes
 

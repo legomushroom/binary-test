@@ -27,7 +27,10 @@
       Main.prototype.renderRecipesList = function() {
         var _this = this;
 
-        this.recipes = new RecipesCollection;
+        this.recipes = new RecipesCollection({
+          isPaginated: true,
+          pageNum: 1
+        });
         this.recipes.fetch().then(function() {
           return _this.recipesView = new RecipesCollectionView({
             collection: _this.recipes,

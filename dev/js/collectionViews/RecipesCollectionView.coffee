@@ -3,12 +3,22 @@ define 'collectionViews/RecipesCollectionView', ['collectionViews/ProtoCollectio
 		itemView: RecipeView
 		template: '#recipes-collection-template'
 
-		intitialize:->
+		initialize:(@o={})->
 			@o.isAnimate = true
 			super
+			@listenToScroll()
+			@collection.on 'afterFetch', => @lock = false
 			@
 
 		appendHtml:(cv, iv, i)-> (if iv.model.get('isNew') then cv.$el.prepend(iv.el) else cv.$el.append iv.el); @
+
+		listenToScroll:->
+			console.log 'listen'
+			App.$window.on 'scroll', =>
+				if App.$window.scrollTop() + App.$window.outerHeight() >= @$el.position().top + @$el.height()
+					!@lock and @collection.nextPage()
+					@lock = true
+
 
 
 	RecipesCollectionView

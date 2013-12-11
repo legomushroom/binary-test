@@ -56,11 +56,22 @@ io = require('socket.io').listen(app.listen(process.env.PORT or port), { log: fa
 io.sockets.on "connection", (socket) ->
 
   socket.on "recipes:read", (data, callback) ->
-    options = sort: ago: 1
+
+    console.log data
+
+    options = 
+        skip: (data.page-1)*data.perPage
+        limit: data.perPage
+        sort:  ago: 1
+
     Recipe.find {}, null, options, (err, docs)->
+      Recipe.find {}, (err, docs2)->
           for doc, i in docs
             doc.versions = doc.versions.length
-          callback null, docs
+
+          callback null, data =
+                          models: docs
+                          total: docs2.length
 
   socket.on "recipe:delete", (data, callback) ->
     Recipe.findById data.id, (err, doc)->

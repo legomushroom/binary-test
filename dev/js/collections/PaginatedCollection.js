@@ -4,7 +4,7 @@
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define('collections/PaginatedCollection', ['backbone', 'helpers'], function(B, helpers) {
+  define('collections/PaginatedCollection', ['backbone', 'helpers', 'underscore'], function(B, helpers, _) {
     var PaginatedCollection, _ref;
 
     PaginatedCollection = (function(_super) {
@@ -19,11 +19,22 @@
 
       PaginatedCollection.prototype.initialize = function(o) {
         this.o = o != null ? o : {};
-        this.perPage = 2;
+        this.perPage = (function() {
+          if (helpers.isMobile()) {
+            return 4;
+          } else {
+            if (window.App.isDevMode) {
+              return 6;
+            } else {
+              return 8;
+            }
+          }
+        })();
+        _.bindAll(this, "parseFun", "pageInfo", "nextPage");
         this.options = {
           page: this.page,
           perPage: this.perPage,
-          total: 10,
+          total: 50,
           reset: false,
           remove: false
         };
@@ -80,7 +91,6 @@
       PaginatedCollection.prototype.nextPage = function() {
         var _this = this;
 
-        this.loadFromFile && this.clearSelectedIcons();
         if (!this.pageInfo().next) {
           return false;
         }
@@ -105,6 +115,9 @@
       PaginatedCollection.prototype.loadPage = function(n) {
         var _this = this;
 
+        if (n == null) {
+          n = 1;
+        }
         if (n === this.options.page) {
           return false;
         }

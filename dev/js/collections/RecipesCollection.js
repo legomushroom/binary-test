@@ -31,7 +31,7 @@
 
       return RecipesCollection;
 
-    })(B.Collection);
+    })(PaginatedCollection);
     return RecipesCollection;
   });
 

@@ -2114,9 +2114,11 @@ a.is-check:after,
 .recipe-b .btn-b {
   float: right;
   margin-top: 32px;
-  margin-right: 16px;
   display: none;
   width: 160px;
+}
+.recipe-b .btn-b + .btn-b {
+  margin-right: 16px;
 }
 .recipe-b .recipe-body-b {
   margin-left: 268px;

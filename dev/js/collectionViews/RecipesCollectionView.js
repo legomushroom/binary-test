@@ -18,9 +18,16 @@
 
       RecipesCollectionView.prototype.template = '#recipes-collection-template';
 
-      RecipesCollectionView.prototype.intitialize = function() {
+      RecipesCollectionView.prototype.initialize = function(o) {
+        var _this = this;
+
+        this.o = o != null ? o : {};
         this.o.isAnimate = true;
-        RecipesCollectionView.__super__.intitialize.apply(this, arguments);
+        RecipesCollectionView.__super__.initialize.apply(this, arguments);
+        this.listenToScroll();
+        this.collection.on('afterFetch', function() {
+          return _this.lock = false;
+        });
         return this;
       };
 
@@ -31,6 +38,18 @@
           cv.$el.append(iv.el);
         }
         return this;
+      };
+
+      RecipesCollectionView.prototype.listenToScroll = function() {
+        var _this = this;
+
+        console.log('listen');
+        return App.$window.on('scroll', function() {
+          if (App.$window.scrollTop() + App.$window.outerHeight() >= _this.$el.position().top + _this.$el.height()) {
+            !_this.lock && _this.collection.nextPage();
+            return _this.lock = true;
+          }
+        });
       };
 
       return RecipesCollectionView;

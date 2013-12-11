@@ -92,19 +92,27 @@
     socket.on("recipes:read", function(data, callback) {
       var options;
 
+      console.log(data);
       options = {
+        skip: (data.page - 1) * data.perPage,
+        limit: data.perPage,
         sort: {
           ago: 1
         }
       };
       return Recipe.find({}, null, options, function(err, docs) {
-        var doc, i, _i, _len;
+        return Recipe.find({}, function(err, docs2) {
+          var doc, i, _i, _len;
 
-        for (i = _i = 0, _len = docs.length; _i < _len; i = ++_i) {
-          doc = docs[i];
-          doc.versions = doc.versions.length;
-        }
-        return callback(null, docs);
+          for (i = _i = 0, _len = docs.length; _i < _len; i = ++_i) {
+            doc = docs[i];
+            doc.versions = doc.versions.length;
+          }
+          return callback(null, data = {
+            models: docs,
+            total: docs2.length
+          });
+        });
       });
     });
     socket.on("recipe:delete", function(data, callback) {

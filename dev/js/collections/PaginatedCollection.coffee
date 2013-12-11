@@ -1,15 +1,16 @@
-define 'collections/PaginatedCollection', ['backbone', 'helpers'], (B, helpers)=>
+define 'collections/PaginatedCollection', ['backbone', 'helpers', 'underscore'], (B, helpers, _)=>
   class PaginatedCollection extends B.Collection
     page: 1
 
     initialize: (@o={})->
-      @perPage = 2 #do -> if helpers.isMobile() then 4 else (if window.App.isDevMode then 4 else 8)
+      @perPage =  do -> if helpers.isMobile() then 4 else (if window.App.isDevMode then 6 else 8)
 
-      # _.bindAll @, "parse", "url", "pageInfo", "nextPage", "previousPage"
+      _.bindAll @, "parseFun", "pageInfo", "nextPage"
+
       @options = 
         page: @page
         perPage: @perPage
-        total: 10
+        total: 50
         reset: false
         remove: false
 
@@ -44,7 +45,6 @@ define 'collections/PaginatedCollection', ['backbone', 'helpers'], (B, helpers)=
       info
 
     nextPage:->
-      @loadFromFile and @clearSelectedIcons()
       return false unless @pageInfo().next
       @options.page++; @fetch().then => !@isClosed and @trigger 'afterFetch'
 
@@ -52,7 +52,7 @@ define 'collections/PaginatedCollection', ['backbone', 'helpers'], (B, helpers)=
       return false unless @pageInfo().prev
       @options.page--; @fetch().then => !@isClosed and @trigger 'afterFetch'
 
-    loadPage:(n)->
+    loadPage:(n=1)->
       return false if n is @options.page
       @options.page = n; @fetch().then => !@isClosed and @trigger 'afterFetch'
 
