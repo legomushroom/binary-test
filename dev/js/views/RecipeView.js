@@ -14,20 +14,31 @@
         return _ref;
       }
 
-      RecipeView.prototype.model = RecipeModel;
-
       RecipeView.prototype.template = '#recipe-template';
 
-      RecipeView.prototype.className = 'recipe-b';
+      RecipeView.prototype.className = 'recipe-b cf';
 
       RecipeView.prototype.events = {
-        'click #js-remove': 'remove'
+        'click .recipe-preview-e': 'toggleExpand',
+        'click #js-remove': 'remove',
+        'click #js-edit': 'edit',
+        'click #js-cancel': 'cancel'
       };
 
       RecipeView.prototype.initialize = function() {
         RecipeView.__super__.initialize.apply(this, arguments);
-        this.model.on('all', _.bind(this.render, this));
+        this.model.on('change', _.bind(this.render, this));
         return this;
+      };
+
+      RecipeView.prototype.render = function() {
+        RecipeView.__super__.render.apply(this, arguments);
+        this.bindAttributes();
+        return this;
+      };
+
+      RecipeView.prototype.bindAttributes = function() {
+        return this.$el.toggleClass('is-edit', !!this.model.get('isEditMode'));
       };
 
       RecipeView.prototype.toggleExpand = function() {
@@ -47,6 +58,25 @@
           });
         }
         return this;
+      };
+
+      RecipeView.prototype.edit = function(e) {
+        if (!e) {
+          return;
+        }
+        e.stopPropagation();
+        return this.model.toggleAttr('isEditMode');
+      };
+
+      RecipeView.prototype.cancel = function(e) {
+        if (!e) {
+          return;
+        }
+        e.stopPropagation();
+        this.model.set('isEditMode', false);
+        return App.$bodyHtml.animate({
+          'scrollTop': this.$el.offset().top - 150
+        });
       };
 
       return RecipeView;

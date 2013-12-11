@@ -17,6 +17,8 @@
 
       RecipesCollection.prototype.url = 'recipes';
 
+      RecipesCollection.prototype.model = RecipeModel;
+
       return RecipesCollection;
 
     })(B.Collection);

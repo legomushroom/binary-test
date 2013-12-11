@@ -1,7 +1,32 @@
-- var data = { header: '<%= header %>', description: '<%= description %>', author: '<%= author %>', ago: '<%= ago %>' }
-include ../css/partials/recipe-header
-- data = { text: '<%= text %>' }
-include ../css/partials/recipe-body 
+.recipe-header-b.cf
+	.recipe-preview-e
+	.header-be(contenteditable="<%= (isEditMode) %>") 			#{ '<%= header %>' }
+	.description-be(contenteditable="<%= (isEditMode) %>")  #{ '<%= description %>' }
+	.ago-be 				by 
+		a(href="#", class="is-hoverable", contenteditable="<%= (isEditMode) %>") #{ '<%= author %>' }
+		i ,  
+		i(contenteditable="<%= (isEditMode) %>") #{ '<%= ago %>' }
 
-- data = { time: '52\'' }
-include ../css/partials/side-icons
+.recipe-body-b
+	.text-bl(contenteditable="<%= (isEditMode) %>", id="js-body") !{ '<%= text %>' }
+
+.side-icons-l
+	.timer-b
+		.text-be #{ '<%= "52\'" %>' }
+		- var data = { path: 'timer-icon' }
+		include ../css/partials/icon
+
+	- var data = { className: 'is-hoverable', idAttribute: 'js-edit', path: 'pen-icon' }
+	include ../css/partials/icon
+
+	- var data = { className: 'is-hoverable', idAttribute: 'js-remove', path: 'trash-icon' }
+	include ../css/partials/icon
+
+	- var data = { className: 'is-hoverable', idAttribute: 'js-versions', path: 'time-machine-icon' }
+	include ../css/partials/icon
+
+
+.cf
+	.btn-b.is-grey10#js-cancel Cancel
+	.btn-b#js-save   Save
+

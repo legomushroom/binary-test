@@ -5,7 +5,7 @@ define 'collectionViews/ProtoCollectionView', ['marionette', 'views/ProtoView'],
 			@o.$el and @setElement @o.$el[0]
 			super
 			@o.isRender and @render()
-			@collection.on 'all', _.bind @render, @
+			@collection.on 'delete', _.bind @render, @
 			@
 
 		render:->

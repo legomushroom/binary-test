@@ -16,6 +16,10 @@
 
       RecipeModel.prototype.url = 'recipe';
 
+      RecipeModel.prototype.defaults = {
+        'isEditMode': false
+      };
+
       return RecipeModel;
 
     })(ProtoModel);

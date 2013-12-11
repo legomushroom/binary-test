@@ -1,6 +1,76 @@
 // BLOCKS
 @import '../assets/imports.styl'
 
+
+shadowSize = 2px
+/* 7ef166d34a4afb6b8a39e7fcb1c302ad */
+.btn-b
+	btnHeight = 4.5*gs 
+	background c-red
+	height 		btnHeight
+	line-height btnHeight
+	position relative
+	display: inline-block
+	padding 0 4*gs
+	color white
+	cursor pointer
+	border-radius br
+	box-shadow shadowSize shadowSize 0 rgba(rgb(c-grey1), .25)
+	font-size 20px
+	text-align center
+
+	&:hover
+		background c-green-hover
+	&:before
+		content ''
+		position absolute
+		nw 0
+		rect 100%
+	&:active
+		transform translate(shadowSize,shadowSize)
+		box-shadow none
+		background c-green
+		&:before, > input[type="file"]
+			transform translate(- shadowSize,- shadowSize)
+		
+	> input[type="file"]
+		padding-left 110%
+		cursor: pointer
+		rect 100%
+		opacity 0
+		nw 0
+		position absolute
+
+	&.is-block
+		display block
+
+	/* 58b21870f4e247e374c47f1d6d823c88 */
+	&.is-iconed
+		padding 0
+		width 100%
+		// width 4.5*gs
+		.icon
+			rect gs
+			fill white
+			position absolute
+			nw 50%
+			margin-left - (gs/2)
+			margin-top - (gs/2)
+
+	/* 3dd69df51d0449f7f9db27fe23b7cef6 */
+	&.is-inactive
+		background-color c-grey3
+		box-shadow none
+		cursor default
+
+		&:active
+			transform none
+
+	&.is-grey10
+		background-color c-grey10
+		color c-grey2
+
+
 /* 2d1fab40da35f011158b6d925d885e4d */
 .round-icon-b
 	border 2px solid c-red
@@ -83,14 +153,47 @@ recipeMarginLeft = 35.5*gs
 			-o-transition-duration 0
 			transition-duration 0
 
-	&.is-expanded
+	&.is-expanded, &.is-edit
 		.recipe-body-b
 			height auto
 
+	&.is-edit
+		.btn-b
+			display block
+
+	[contenteditable="true"]
+		outline 0
+		box-shadow inset 0 0 0 4px c-grey10
+		// editableColor = rgba(255,255,255,.5)
+		// background-image: -webkit-linear-gradient(-45deg, editableColor 25%, rgba(255, 154, 26, 0) 25%, rgba(255, 154, 26, 0) 50%, editableColor 50%, editableColor 75%, rgba(255, 154, 26, 0) 75%);
+		// background-image: -moz-linear-gradient(-45deg, editableColor 25%, rgba(255, 154, 26, 0) 25%, rgba(255, 154, 26, 0) 50%, editableColor 50%, editableColor 75%, rgba(255, 154, 26, 0) 75%);
+		// background-image: -o-linear-gradient(-45deg, editableColor 25%, rgba(255, 154, 26, 0) 25%, rgba(255, 154, 26, 0) 50%, editableColor 50%, editableColor 75%, rgba(255, 154, 26, 0) 75%);
+		// background-image: linear-gradient(-45deg, editableColor 25%, rgba(255, 154, 26, 0) 25%, rgba(255, 154, 26, 0) 50%, editableColor 50%, editableColor 75%, rgba(255, 154, 26, 0) 75%);
+		// background-size: 50px 50px;
+		border-radius 2*br
+		left - gs
+		position relative
+		padding-left gs
+
+		&.text-bl
+			padding 2*gs
+
+		&:focus
+			box-shadow inset 0 0 0 4px c-red
+
+	.btn-b
+		float right
+		margin-top 4*gs
+		margin-right 2*gs
+		display none
+		width 20*gs
+
 	.recipe-body-b
-		margin-left recipeMarginLeft
+		margin-left recipeMarginLeft - 2*gs
+		padding-left 2*gs
 		height 0
 		overflow hidden
+
 
 	.side-icons-l
 		position: absolute

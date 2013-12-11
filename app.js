@@ -117,7 +117,7 @@
   app.get('/gen', function(req, res, next) {
     var i, _i;
 
-    for (i = _i = 0; _i <= 10; i = ++_i) {
+    for (i = _i = 2; _i <= 12; i = ++_i) {
       new Recipe({
         header: "ChocoTaco" + i,
         description: "lean mean and full of caffeine" + i,

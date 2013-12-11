@@ -184,16 +184,16 @@
     <script id="recipe-template" type="template">
       <div class="recipe-header-b cf">
         <div class="recipe-preview-e"></div>
-        <div class="header-be">			&lt;%= header %&gt;</div>
-        <div class="description-be">&lt;%= description %&gt;</div>
-        <div class="ago-be">				by <a href="#" class="is-hoverable">&lt;%= author %&gt;</a><i>, &lt;%= ago %&gt;</i></div>
+        <div contenteditable="&lt;%= (isEditMode) %&gt;" class="header-be">			&lt;%= header %&gt;</div>
+        <div contenteditable="&lt;%= (isEditMode) %&gt;" class="description-be"> &lt;%= description %&gt;</div>
+        <div class="ago-be">				by <a href="#" contenteditable="&lt;%= (isEditMode) %&gt;" class="is-hoverable">&lt;%= author %&gt;</a><i>,  </i><i contenteditable="&lt;%= (isEditMode) %&gt;">&lt;%= ago %&gt;</i></div>
       </div>
       <div class="recipe-body-b">
-        <div class="text-bl"><%= text %></div>
+        <div contenteditable="&lt;%= (isEditMode) %&gt;" id="js-body" class="text-bl"><%= text %></div>
       </div>
       <div class="side-icons-l">
         <div class="timer-b">
-          <div class="text-be">52'</div>
+          <div class="text-be">&lt;%= &quot;52'&quot; %&gt;</div>
           <div id="" title="" class="icon ">
             <svg viewBox="0 0 32 32">
               <use xlink:href="#timer-icon"></use>
@@ -215,6 +215,10 @@
             <use xlink:href="#time-machine-icon"></use>
           </svg>
         </div>
+      </div>
+      <div class="cf">
+        <div id="js-cancel" class="btn-b is-grey10">Cancel</div>
+        <div id="js-save" class="btn-b">  Save</div>
       </div>
     </script>
     <script id="recipes-collection-template" type="template">

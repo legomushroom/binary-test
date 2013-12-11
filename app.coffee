@@ -109,7 +109,7 @@ io.sockets.on "connection", (socket) ->
 #           else callback null, 'ok'
 
 app.get '/gen', (req,res,next)->
-  for i in [0..10]
+  for i in [2..12]
     new Recipe(
         header:         "ChocoTaco#{i}"
         description:    "lean mean and full of caffeine#{i}"

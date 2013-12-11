@@ -19,7 +19,7 @@
         this.o.$el && this.setElement(this.o.$el[0]);
         ProtoCollectionView.__super__.initialize.apply(this, arguments);
         this.o.isRender && this.render();
-        this.collection.on('all', _.bind(this.render, this));
+        this.collection.on('delete', _.bind(this.render, this));
         return this;
       };
 
