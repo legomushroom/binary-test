@@ -69,6 +69,7 @@
     authorLink: String,
     ago: String,
     text: String,
+    estimatedTime: String,
     image: String,
     versions: Array
   });
@@ -89,13 +90,25 @@
 
   io.sockets.on("connection", function(socket) {
     socket.on("recipes:read", function(data, callback) {
-      return Recipe.find({}, null, function(err, docs) {
+      var options;
+
+      options = {
+        sort: {
+          ago: 1
+        }
+      };
+      return Recipe.find({}, null, options, function(err, docs) {
+        var doc, i, _i, _len;
+
+        for (i = _i = 0, _len = docs.length; _i < _len; i = ++_i) {
+          doc = docs[i];
+          doc.versions = doc.versions.length;
+        }
         return callback(null, docs);
       });
     });
-    return socket.on("recipes:delete", function(data, callback) {
+    socket.on("recipes:delete", function(data, callback) {
       return Recipe.findById(data.id, function(err, doc) {
-        console.log(data);
         if (err) {
           callback(500, 'DB error');
           console.error(err);
@@ -112,20 +125,71 @@
         });
       });
     });
+    return socket.on("recipe:update", function(data, callback) {
+      return Recipe.findById(data.id, function(err, doc) {
+        var id;
+
+        if (err) {
+          callback(500, 'DB error');
+          console.error(err);
+        } else {
+          callback(null, 'ok');
+        }
+        data.versions = doc.versions.slice(0);
+        data.versions.push(doc);
+        id = data.id;
+        delete data._id;
+        return Recipe.update({
+          '_id': id
+        }, data, {
+          upsert: true
+        }, function(err) {
+          if (err) {
+            callback(500, 'DB error');
+            return console.error(err);
+          } else {
+            return callback(data, 'ok');
+          }
+        });
+      });
+    });
   });
 
   app.get('/gen', function(req, res, next) {
     var i, _i;
 
-    for (i = _i = 2; _i <= 12; i = ++_i) {
+    for (i = _i = 1; _i <= 11; i = ++_i) {
       new Recipe({
-        header: "ChocoTaco" + i,
-        description: "lean mean and full of caffeine" + i,
-        author: "Gumball" + i,
+        header: "ChocoTaco-" + i,
+        description: "lean mean and full of caffeine-" + i,
+        author: "Gumball-" + i,
         authorLink: "http://legomushroom.com",
         ago: "" + i + " hours ago",
         text: "" + i + " So, Tony, this is the section about Getting Started EndDash is a two-way binding javascript templating framework built on top of semantic HTML. <br> <br> In its current release, EndDash relies on Backbone objects. See the dependency section for further details.",
-        image: 'asdasd',
+        image: 'taco.png',
+        estimatedTime: "" + i + "\'",
+        versions: []
+      }).save();
+      new Recipe({
+        header: "SweetStump-" + i,
+        description: "wooden and tasty-" + i,
+        author: "Gumball-" + i,
+        authorLink: "http://legomushroom.com",
+        ago: "" + i + " hours ago",
+        text: "" + i + " So, Tony, this is the section about Getting Started EndDash is a two-way binding javascript templating framework built on top of semantic HTML. <br> <br> In its current release, EndDash relies on Backbone objects. See the dependency section for further details.",
+        image: 'stump.png',
+        estimatedTime: "" + i + "\'",
+        versions: []
+      }).save();
+      new Recipe({
+        header: "Grass'n'Berries-" + i,
+        description: "red and green - your potential sin-" + i,
+        author: "Gumball-" + i,
+        authorLink: "http://legomushroom.com",
+        ago: "" + i + " hours ago",
+        text: "" + i + " So, Tony, this is the section about Getting Started EndDash is a two-way binding javascript templating framework built on top of semantic HTML. <br> <br> In its current release, EndDash relies on Backbone objects. See the dependency section for further details.",
+        image: 'grass.png',
+        estimatedTime: "" + i + "\'",
         versions: []
       }).save();
     }

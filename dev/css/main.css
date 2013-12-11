@@ -195,10 +195,10 @@ body {
 .bold-gm {
   font-weight: bold;
 }
-.op-0-gm {
+.op-0-g {
   opacity: 0;
 }
-.op-5-gm {
+.op-5-g {
   opacity: 0.5;
 }
 a,
@@ -250,6 +250,9 @@ a.is-check:after,
 }
 .h-g-i {
   display: none !important;
+}
+.o-v-g-i {
+  overflow: visible !important;
 }
 .cf:after,
 .cf:before {
@@ -1907,11 +1910,13 @@ a.is-check:after,
 .recipe-preview-e {
   width: 232px;
   height: 232px;
+  background: #fff url("http://lorempixel.com/232/232/abstract");
+  background-position: center center;
   border-radius: 50%;
   border-width: 4px;
   border-style: solid;
   border-color: #f59995;
-  background: #fff;
+  cursor: pointer;
 }
 .btn-b {
   background: #f59995;
@@ -1984,10 +1989,15 @@ a.is-check:after,
   margin-left: -4px;
   margin-top: -4px;
 }
+.btn-b.is-grey10 {
+  background-color: #fff;
+  color: #3d3d3d;
+}
 .btn-b.is-inactive {
-  background-color: #575757;
-  box-shadow: none;
-  cursor: default;
+  box-shadow: none !important;
+  cursor: default !important;
+  background-color: #e3dbd5;
+  color: #f2f2f2;
 }
 .btn-b.is-inactive:active {
   -webkit-transform: none;
@@ -1995,10 +2005,6 @@ a.is-check:after,
   -ms-transform: none;
   -o-transform: none;
   transform: none;
-}
-.btn-b.is-grey10 {
-  background-color: #fff;
-  color: #3d3d3d;
 }
 .round-icon-b {
   border-width: 2px;
@@ -2055,16 +2061,16 @@ a.is-check:after,
   position: relative;
   color: #f59995;
   width: 72px;
+  text-align: center;
 }
 .timer-b > .text-be {
   font-family: Impact;
-  position: absolute;
+  position: relative;
   font-size: 14px;
   font-weight: 100;
-  top: 12px;
-  width: 100%;
-  text-align: center;
-  margin-left: 2px;
+  top: 28px;
+  display: inline-block;
+  margin-left: 4px;
 }
 .timer-b .icon {
   width: 72px;
@@ -2074,7 +2080,9 @@ a.is-check:after,
   padding: 64px 0;
   position: relative;
 }
-.recipe-b:hover .side-icons-l {
+.recipe-b:hover .side-icons-l,
+.recipe-b.is-edit .side-icons-l,
+.recipe-b.is-expanded .side-icons-l {
   display: block;
   opacity: 1;
   -webkit-transition-duration: 0;
@@ -2092,17 +2100,15 @@ a.is-check:after,
 }
 .recipe-b [contenteditable="true"] {
   outline: 0;
-  box-shadow: inset 0 0 0 4px #fff;
+  background-color: #fff;
   border-radius: 6px;
-  left: -8px;
-  position: relative;
-  padding-left: 8px;
+  white-space: normal !important;
 }
 .recipe-b [contenteditable="true"].text-bl {
   padding: 16px;
 }
 .recipe-b [contenteditable="true"]:focus {
-  box-shadow: inset 0 0 0 4px #f59995;
+  box-shadow: inset 0 0 0 2px #f59995;
 }
 .recipe-b .btn-b {
   float: right;
@@ -2121,7 +2127,7 @@ a.is-check:after,
   position: absolute;
   position: absolute;
   right: -104px;
-  top: 64px;
+  top: 48px;
   -webkit-transition: opacity 0.5s ease-out;
   -moz-transition: opacity 0.5s ease-out;
   -o-transition: opacity 0.5s ease-out;
@@ -2141,9 +2147,18 @@ a.is-check:after,
   float: left;
 }
 .recipe-header-b > .header-be,
-.recipe-header-b .description-be,
+.recipe-header-b > .description-be,
 .recipe-header-b > .ago-be {
   margin-left: 284px;
+}
+.recipe-header-b > .header-be,
+.recipe-header-b > .description-be {
+  white-space: nowrap;
+  -webkit-text-overflow: ellipsis;
+  -moz-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .recipe-header-b > .header-be {
   font-size: 72px;

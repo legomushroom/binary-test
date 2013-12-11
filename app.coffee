@@ -41,6 +41,7 @@ RecipeSchema = new mongo.Schema
       authorLink:     String
       ago:            String
       text:           String
+      estimatedTime:  String
       image:          String
       versions:       Array
 
@@ -54,14 +55,15 @@ io = require('socket.io').listen(app.listen(process.env.PORT or port), { log: fa
 
 io.sockets.on "connection", (socket) ->
 
-
   socket.on "recipes:read", (data, callback) ->
-      Recipe.find {}, null, (err, docs)->
+    options = sort: ago: 1
+    Recipe.find {}, null, options, (err, docs)->
+          for doc, i in docs
+            doc.versions = doc.versions.length
           callback null, docs
 
   socket.on "recipes:delete", (data, callback) ->
        Recipe.findById data.id, (err, doc)->
-        console.log data
         if err
           callback 500, 'DB error'
           console.error err
@@ -72,6 +74,25 @@ io.sockets.on "connection", (socket) ->
             callback 500, 'fs error'
             console.error err
           else callback null, 'ok'
+
+  socket.on "recipe:update", (data, callback) ->
+
+    Recipe.findById data.id, (err, doc)->
+      if err
+        callback 500, 'DB error'
+        console.error err
+      else callback null, 'ok'
+
+      data.versions = doc.versions.slice(0)
+
+      data.versions.push doc
+
+      id = data.id; delete data._id
+      Recipe.update {'_id':id}, data, {upsert:true}, (err)->
+        if err
+          callback 500, 'DB error'
+          console.error err
+        else callback data, 'ok'
 
 
 #   socket.on "section:create", (data, callback) ->
@@ -109,15 +130,40 @@ io.sockets.on "connection", (socket) ->
 #           else callback null, 'ok'
 
 app.get '/gen', (req,res,next)->
-  for i in [2..12]
+  for i in [1..11]
     new Recipe(
-        header:         "ChocoTaco#{i}"
-        description:    "lean mean and full of caffeine#{i}"
-        author:         "Gumball#{i}"
+        header:         "ChocoTaco-#{i}"
+        description:    "lean mean and full of caffeine-#{i}"
+        author:         "Gumball-#{i}"
         authorLink:     "http://legomushroom.com"
         ago:            "#{i} hours ago"
         text:           "#{i} So, Tony, this is the section about Getting Started EndDash is a two-way binding javascript templating framework built on top of semantic HTML. <br> <br> In its current release, EndDash relies on Backbone objects. See the dependency section for further details."
-        image:          'asdasd'
+        image:          'taco.png'
+        estimatedTime:  "#{i}\'"
+        versions:       []
+    ).save()
+
+    new Recipe(
+        header:         "SweetStump-#{i}"
+        description:    "wooden and tasty-#{i}"
+        author:         "Gumball-#{i}"
+        authorLink:     "http://legomushroom.com"
+        ago:            "#{i} hours ago"
+        text:           "#{i} So, Tony, this is the section about Getting Started EndDash is a two-way binding javascript templating framework built on top of semantic HTML. <br> <br> In its current release, EndDash relies on Backbone objects. See the dependency section for further details."
+        image:          'stump.png'
+        estimatedTime:  "#{i}\'"
+        versions:       []
+    ).save()
+
+    new Recipe(
+        header:         "Grass'n'Berries-#{i}"
+        description:    "red and green - your potential sin-#{i}"
+        author:         "Gumball-#{i}"
+        authorLink:     "http://legomushroom.com"
+        ago:            "#{i} hours ago"
+        text:           "#{i} So, Tony, this is the section about Getting Started EndDash is a two-way binding javascript templating framework built on top of semantic HTML. <br> <br> In its current release, EndDash relies on Backbone objects. See the dependency section for further details."
+        image:          'grass.png'
+        estimatedTime:  "#{i}\'"
         versions:       []
     ).save()
 

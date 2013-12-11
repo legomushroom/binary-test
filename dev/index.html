@@ -153,7 +153,7 @@
 
 </svg>
     </div>
-    <div id="js-main-header" class="header-l">
+    <div id="js-main-header" class="header-l op-0-g">
       <div class="round-icon-b is-like-message is-bg is-hoverable">
         <div id="" title="" class="icon ">
           <svg viewBox="0 0 32 32">
@@ -183,42 +183,42 @@
     </script>
     <script id="recipe-template" type="template">
       <div class="recipe-header-b cf">
-        <div class="recipe-preview-e"></div>
-        <div contenteditable="&lt;%= (isEditMode) %&gt;" class="header-be">			&lt;%= header %&gt;</div>
-        <div contenteditable="&lt;%= (isEditMode) %&gt;" class="description-be"> &lt;%= description %&gt;</div>
-        <div class="ago-be">				by <a href="#" contenteditable="&lt;%= (isEditMode) %&gt;" class="is-hoverable">&lt;%= author %&gt;</a><i>,  </i><i contenteditable="&lt;%= (isEditMode) %&gt;">&lt;%= ago %&gt;</i></div>
+        <div style="background-image:url('css/i/&lt;%= image %&gt;')" class="recipe-preview-e"></div>
+        <div contenteditable="&lt;%= (isEditMode) %&gt;" id="js-header" class="header-be">			&lt;%= header %&gt;</div>
+        <div contenteditable="&lt;%= (isEditMode) %&gt;" id="js-description" class="description-be"> &lt;%= description %&gt;</div>
+        <div class="ago-be">				by <a href="&lt;%= authorLink %&gt;" target="_blank" contenteditable="&lt;%= (isEditMode) %&gt;" id="js-author" class="is-hoverable">&lt;%= author %&gt;</a><i>,  </i><i contenteditable="&lt;%= (isEditMode) %&gt;" id="js-ago">&lt;%= ago %&gt;</i></div>
       </div>
       <div class="recipe-body-b">
         <div contenteditable="&lt;%= (isEditMode) %&gt;" id="js-body" class="text-bl"><%= text %></div>
       </div>
       <div class="side-icons-l">
-        <div class="timer-b">
-          <div class="text-be">&lt;%= &quot;52'&quot; %&gt;</div>
+        <div title="estimated cook time" class="timer-b">
+          <div contenteditable="&lt;%= (isEditMode) %&gt;" id="js-estimated" class="text-be">&lt;%= estimatedTime %&gt;</div>
           <div id="" title="" class="icon ">
             <svg viewBox="0 0 32 32">
               <use xlink:href="#timer-icon"></use>
             </svg>
           </div>
         </div>
-        <div id="js-edit" title="" class="icon is-hoverable">
+        <div id="js-edit" title="edit" class="icon is-hoverable">
           <svg viewBox="0 0 32 32">
             <use xlink:href="#pen-icon"></use>
           </svg>
         </div>
-        <div id="js-remove" title="" class="icon is-hoverable">
+        <div id="js-remove" title="remove" class="icon is-hoverable">
           <svg viewBox="0 0 32 32">
             <use xlink:href="#trash-icon"></use>
           </svg>
         </div>
-        <div id="js-versions" title="" class="icon is-hoverable">
+        <div id="js-versions" title="previous versions" class="icon is-hoverable &lt;%= (versions == false) ? &quot;h-g-i&quot; : &quot;&quot; %&gt;">
           <svg viewBox="0 0 32 32">
             <use xlink:href="#time-machine-icon"></use>
           </svg>
         </div>
       </div>
       <div class="cf">
-        <div id="js-cancel" class="btn-b is-grey10">Cancel</div>
-        <div id="js-save" class="btn-b">  Save</div>
+        <div id="js-cancel" class="btn-b is-grey10">  Cancel</div>
+        <div id="js-save" class="btn-b is-inactive">  Save</div>
       </div>
     </script>
     <script id="recipes-collection-template" type="template">

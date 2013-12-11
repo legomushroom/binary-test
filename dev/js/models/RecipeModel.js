@@ -17,7 +17,15 @@
       RecipeModel.prototype.url = 'recipe';
 
       RecipeModel.prototype.defaults = {
-        'isEditMode': false
+        'isEditMode': false,
+        'header': 'Recipe header',
+        'description': 'description',
+        'author': 'Author',
+        'authorLink': 'http://legomushroom.com/',
+        'image': 'taco.png',
+        'ago': 'added ago',
+        'text': 'text',
+        'estimatedTime': '5\''
       };
 
       return RecipeModel;

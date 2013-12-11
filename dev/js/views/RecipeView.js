@@ -22,7 +22,9 @@
         'click .recipe-preview-e': 'toggleExpand',
         'click #js-remove': 'remove',
         'click #js-edit': 'edit',
-        'click #js-cancel': 'cancel'
+        'click #js-cancel': 'cancel',
+        'click #js-save': 'save',
+        'keyup': 'keyup'
       };
 
       RecipeView.prototype.initialize = function() {
@@ -52,7 +54,7 @@
           return;
         }
         e.stopPropagation();
-        if (confirm("Are you sure whant to remove \"" + (this.model.get('header')) + "\" item?")) {
+        if (confirm("Are you sure whant to remove \"" + ($.trim(this.model.get('header'))) + "\" item?")) {
           this.$el.fadeOut(500, function() {
             return _this.model.destroy();
           });
@@ -61,22 +63,48 @@
       };
 
       RecipeView.prototype.edit = function(e) {
-        if (!e) {
-          return;
+        this.model.toggleAttr('isEditMode');
+        return false;
+      };
+
+      RecipeView.prototype.keyup = function(e) {
+        this.isActive = true;
+        if (!this.model.get('isEditMode')) {
+          return false;
         }
-        e.stopPropagation();
-        return this.model.toggleAttr('isEditMode');
+        this.$('#js-save').toggleClass('is-inactive', false);
+        return false;
+      };
+
+      RecipeView.prototype.getFromDom = function() {
+        this.domData = {
+          'text': this.$('#js-body').html(),
+          'header': this.$('#js-header').html(),
+          'description': this.$('#js-description').html(),
+          'author': this.$('#js-author').html(),
+          'ago': this.$('#js-ago').html(),
+          'estimatedTime': this.$('#js-estimated').html()
+        };
+        return this.domData;
+      };
+
+      RecipeView.prototype.save = function(e) {
+        if (!this.isActive) {
+          return false;
+        }
+        this.model.set(this.getFromDom());
+        this.model.set('versions', this.model.get('versions') + 1);
+        this.model.save();
+        this.cancel();
+        return false;
       };
 
       RecipeView.prototype.cancel = function(e) {
-        if (!e) {
-          return;
-        }
-        e.stopPropagation();
         this.model.set('isEditMode', false);
-        return App.$bodyHtml.animate({
+        App.$bodyHtml.animate({
           'scrollTop': this.$el.offset().top - 150
         });
+        return false;
       };
 
       return RecipeView;

@@ -57,18 +57,19 @@ shadowSize = 2px
 			margin-left - (gs/2)
 			margin-top - (gs/2)
 
-	/* 3dd69df51d0449f7f9db27fe23b7cef6 */
-	&.is-inactive
-		background-color c-grey3
-		box-shadow none
-		cursor default
-
-		&:active
-			transform none
-
 	&.is-grey10
 		background-color c-grey10
 		color c-grey2
+
+	/* 3dd69df51d0449f7f9db27fe23b7cef6 */
+	&.is-inactive
+		box-shadow none II
+		cursor default  II
+		background-color darken(c-bg, 5)
+		color c-grey9
+
+		&:active
+			transform none II
 
 
 /* 2d1fab40da35f011158b6d925d885e4d */
@@ -124,17 +125,17 @@ timerWidth = 9*gs
 	position: relative
 	color c-red
 	width timerWidth
+	text-align center
 
 	> .text-be
 		font-family Impact
-		position: absolute
+		position: relative
 		font-size 1.75*gs 
 		font-weight 100
-		top 1.5*gs
-		width: 100%
-		text-align center
-		margin-left 2px
-		
+		top 3.5*gs
+		display inline-block
+		margin-left (gs/2)
+
 	.icon
 		rect timerWidth
 
@@ -143,7 +144,7 @@ recipeMarginLeft = 35.5*gs
 	padding 8*gs 0
 	position relative
 
-	&:hover
+	&:hover, &.is-edit, &.is-expanded
 		.side-icons-l
 			display block
 			opacity 1
@@ -163,23 +164,15 @@ recipeMarginLeft = 35.5*gs
 
 	[contenteditable="true"]
 		outline 0
-		box-shadow inset 0 0 0 4px c-grey10
-		// editableColor = rgba(255,255,255,.5)
-		// background-image: -webkit-linear-gradient(-45deg, editableColor 25%, rgba(255, 154, 26, 0) 25%, rgba(255, 154, 26, 0) 50%, editableColor 50%, editableColor 75%, rgba(255, 154, 26, 0) 75%);
-		// background-image: -moz-linear-gradient(-45deg, editableColor 25%, rgba(255, 154, 26, 0) 25%, rgba(255, 154, 26, 0) 50%, editableColor 50%, editableColor 75%, rgba(255, 154, 26, 0) 75%);
-		// background-image: -o-linear-gradient(-45deg, editableColor 25%, rgba(255, 154, 26, 0) 25%, rgba(255, 154, 26, 0) 50%, editableColor 50%, editableColor 75%, rgba(255, 154, 26, 0) 75%);
-		// background-image: linear-gradient(-45deg, editableColor 25%, rgba(255, 154, 26, 0) 25%, rgba(255, 154, 26, 0) 50%, editableColor 50%, editableColor 75%, rgba(255, 154, 26, 0) 75%);
-		// background-size: 50px 50px;
+		background-color white
 		border-radius 2*br
-		left - gs
-		position relative
-		padding-left gs
+		white-space normal II
 
 		&.text-bl
 			padding 2*gs
 
 		&:focus
-			box-shadow inset 0 0 0 4px c-red
+			box-shadow inset 0 0 0 2px c-red
 
 	.btn-b
 		float right
@@ -194,12 +187,11 @@ recipeMarginLeft = 35.5*gs
 		height 0
 		overflow hidden
 
-
 	.side-icons-l
 		position: absolute
 		position: absolute
 		right - 13*gs
-		top 8*gs
+		top 6*gs
 		// display none
 		crossTransition opacity .5s ease-out
 		opacity 0
@@ -218,8 +210,11 @@ recipeMarginLeft = 35.5*gs
 	.recipe-preview-e
 		float left
 
-	> .header-be,  .description-be, > .ago-be
+	> .header-be,  > .description-be, > .ago-be
 		margin-left recipeMarginLeft
+
+	> .header-be, > .description-be
+		textel()
 
 	> .header-be
 		font-size 	9*gs
@@ -228,6 +223,8 @@ recipeMarginLeft = 35.5*gs
 	> .description-be
 		font-size 	4.5*gs
 		margin-top gs
+
+
 	> .ago-be
 		margin-top 2*gs
 		font-size 	3*gs
