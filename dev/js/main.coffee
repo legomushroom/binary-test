@@ -36,7 +36,7 @@ require.config
 			exports: 'Backbone.Marionette'
 			deps: 	['backbone.stickit']
 
-define 'main', ['collectionViews/NotiesCollectionView', 'marionette', 'router', 'socketio', 'helpers', 'backbone.iobind', 'backbone.stickit' ], (Notyfier, M, Router, io, helpers)->
+define 'main', ['marionette', 'router', 'socketio', 'helpers', 'backbone.iobind', 'backbone.stickit' ], (M, Router, io, helpers)->
 	
 	class Application
 		constructor:->

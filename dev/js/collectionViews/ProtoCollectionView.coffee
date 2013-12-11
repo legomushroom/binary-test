@@ -2,9 +2,14 @@ define 'collectionViews/ProtoCollectionView', ['marionette', 'views/ProtoView'],
 	class ProtoCollectionView extends M.CompositeView
 		
 		initialize:(@o={})->
-			@o.$el and @setElement @o.$el
+			@o.$el and @setElement @o.$el[0]
 			super
 			@o.isRender and @render()
+			@collection.on 'all', _.bind @render, @
+			@
+
+		render:->
+			super
 			@
 
 		normalizeCollection:(collectionProto)->

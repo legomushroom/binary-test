@@ -2,23 +2,23 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>iconmelon</title>
+    <title>The Binary Cookbook</title>
     <link href="favicon.ico" rel="icon" type="image/png">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <meta name="description" content="svg icons library for web">
-    <meta name="keywords" content="svg library, web, css managable">
+    <meta name="description" content="recipes">
+    <meta name="keywords" content="cookbook food recipes">
     <meta name="author" content="LegoMushroom">
     <meta name="copyright" content="LegoMushroom, MIT">
-    <meta name="application-name" content="iconmelon">
-    <meta property="og:title" content="iconmelon">
+    <meta name="application-name" content="the binary cookbook">
+    <meta property="og:title" content="the binary cookbook">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="http://iconmelon.com/css/icons/logo-large.png">
-    <meta property="og:url" content="http://iconmelon.com">
-    <meta property="og:description" content="svg icons library for web">
+    <meta property="og:image" content="">
+    <meta property="og:url" content="">
+    <meta property="og:description" content="">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="iconmelon">
-    <meta name="twitter:description" content="svg icons library for web">
-    <meta name="twitter:image" content="http://iconmelon.com/css/icons/logo-large.png">
+    <meta name="twitter:title" content="the binary cookbook">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="">
   </head>
   <body>
     <div id="js-blinded" class="blinded-e h-gm"></div>
@@ -178,7 +178,47 @@
       </div>
     </div>
     <section role="main" id="main"></section>
-    <script id="pagination-template" type="template">
+    <script id="main-template" type="template">
+      <div id="js-recipes-place" class="recipes-l"></div>
+    </script>
+    <script id="recipe-template" type="template">
+      <div class="recipe-header-b cf">
+        <div class="recipe-preview-e"></div>
+        <div class="header-be">			&lt;%= header %&gt;</div>
+        <div class="description-be">&lt;%= description %&gt;</div>
+        <div class="ago-be">				by <a href="#" class="is-hoverable">&lt;%= author %&gt;</a><i>, &lt;%= ago %&gt;</i></div>
+      </div>
+      <div class="recipe-body-b">
+        <div class="text-bl"><%= text %></div>
+      </div>
+      <div class="side-icons-l">
+        <div class="timer-b">
+          <div class="text-be">52'</div>
+          <div id="" title="" class="icon ">
+            <svg viewBox="0 0 32 32">
+              <use xlink:href="#timer-icon"></use>
+            </svg>
+          </div>
+        </div>
+        <div id="js-edit" title="" class="icon is-hoverable">
+          <svg viewBox="0 0 32 32">
+            <use xlink:href="#pen-icon"></use>
+          </svg>
+        </div>
+        <div id="js-remove" title="" class="icon is-hoverable">
+          <svg viewBox="0 0 32 32">
+            <use xlink:href="#trash-icon"></use>
+          </svg>
+        </div>
+        <div id="js-versions" title="" class="icon is-hoverable">
+          <svg viewBox="0 0 32 32">
+            <use xlink:href="#time-machine-icon"></use>
+          </svg>
+        </div>
+      </div>
+    </script>
+    <script id="recipes-collection-template" type="template">
+      <div></div>
     </script>
     <script type="text/javascript" src="js/lib/require.js" data-main="js/main"></script>
   </body>

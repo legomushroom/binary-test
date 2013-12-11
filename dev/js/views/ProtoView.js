@@ -19,6 +19,7 @@
         this.o.$el && this.setElement(this.o.$el);
         ProtoView.__super__.initialize.apply(this, arguments);
         this.o.isRender && this.render();
+        this.o.isAnimate && this.animateIn();
         return this;
       };
 

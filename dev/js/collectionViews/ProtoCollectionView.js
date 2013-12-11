@@ -16,9 +16,15 @@
 
       ProtoCollectionView.prototype.initialize = function(o) {
         this.o = o != null ? o : {};
-        this.o.$el && this.setElement(this.o.$el);
+        this.o.$el && this.setElement(this.o.$el[0]);
         ProtoCollectionView.__super__.initialize.apply(this, arguments);
         this.o.isRender && this.render();
+        this.collection.on('all', _.bind(this.render, this));
+        return this;
+      };
+
+      ProtoCollectionView.prototype.render = function() {
+        ProtoCollectionView.__super__.render.apply(this, arguments);
         return this;
       };
 

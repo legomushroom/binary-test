@@ -3,26 +3,23 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define('models/NotyModel', ['models/ProtoModel'], function(ProtoModel) {
-    var NotyModel, _ref;
+  define('models/RecipeModel', ['models/ProtoModel', 'helpers'], function(ProtoModel, helpers) {
+    var RecipeModel, _ref;
 
-    NotyModel = (function(_super) {
-      __extends(NotyModel, _super);
+    RecipeModel = (function(_super) {
+      __extends(RecipeModel, _super);
 
-      function NotyModel() {
-        _ref = NotyModel.__super__.constructor.apply(this, arguments);
+      function RecipeModel() {
+        _ref = RecipeModel.__super__.constructor.apply(this, arguments);
         return _ref;
       }
 
-      NotyModel.prototype.defaults = {
-        type: 'ok',
-        text: ''
-      };
+      RecipeModel.prototype.url = 'recipe';
 
-      return NotyModel;
+      return RecipeModel;
 
     })(ProtoModel);
-    return NotyModel;
+    return RecipeModel;
   });
 
 }).call(this);

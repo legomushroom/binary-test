@@ -32,33 +32,46 @@ app.use express.static  __dirname + "/#{folder}", maxAge: oneDay
 app.use express.bodyParser(uploadDir: 'uploads')
 app.use express.methodOverride()
 
-mongo.connect if process.env.NODE_ENV then fs.readFileSync("db").toString() else 'mongodb://localhost/iconmelon'
+mongo.connect if process.env.NODE_ENV then fs.readFileSync("db").toString() else 'mongodb://localhost/binary-cookbook'
 
-SectionSchema = new mongo.Schema
-      name:           String
+RecipeSchema = new mongo.Schema
+      header:         String
+      description:    String
       author:         String
-      license:        String
-      email:          String
-      website:        String
-      isMulticolor:   Boolean
-      icons:          Array
-      moderated:      Boolean
-      createDate:     Date
+      authorLink:     String
+      ago:            String
+      text:           String
+      image:          String
+      versions:       Array
 
-SectionSchema.virtual('id').get -> @_id.toHexString()
+RecipeSchema.virtual('id').get -> @_id.toHexString()
 # Ensure virtual fields are serialised.
-SectionSchema.set 'toJSON', virtuals: true
+RecipeSchema.set 'toJSON', virtuals: true
+Recipe = mongo.model 'recipe', RecipeSchema
 
 io = require('socket.io').listen(app.listen(process.env.PORT or port), { log: false })
 
 
-# io.sockets.on "connection", (socket) ->
+io.sockets.on "connection", (socket) ->
 
 
-#   socket.on "sections:read", (data, callback) ->
-#       Section.find {moderated: true}, null, options, (err, docs)->
-#           callback null, data =
-#                           models: docs
+  socket.on "recipes:read", (data, callback) ->
+      Recipe.find {}, null, (err, docs)->
+          callback null, docs
+
+  socket.on "recipes:delete", (data, callback) ->
+       Recipe.findById data.id, (err, doc)->
+        console.log data
+        if err
+          callback 500, 'DB error'
+          console.error err
+        else callback null, 'ok'
+
+        doc.remove (err)->
+          if err
+            callback 500, 'fs error'
+            console.error err
+          else callback null, 'ok'
 
 
 #   socket.on "section:create", (data, callback) ->
@@ -95,7 +108,19 @@ io = require('socket.io').listen(app.listen(process.env.PORT or port), { log: fa
 #             console.error err
 #           else callback null, 'ok'
 
-# app.post '/download-icons', (req,res,next)->
-#   main.generateProductionIcons(req.body).then (fileName)=>
-#     res.send fileName
+app.get '/gen', (req,res,next)->
+  for i in [0..10]
+    new Recipe(
+        header:         "ChocoTaco#{i}"
+        description:    "lean mean and full of caffeine#{i}"
+        author:         "Gumball#{i}"
+        authorLink:     "http://legomushroom.com"
+        ago:            "#{i} hours ago"
+        text:           "#{i} So, Tony, this is the section about Getting Started EndDash is a two-way binding javascript templating framework built on top of semantic HTML. <br> <br> In its current release, EndDash relies on Backbone objects. See the dependency section for further details."
+        image:          'asdasd'
+        versions:       []
+    ).save()
+
+  res.end 'ok'
+
 

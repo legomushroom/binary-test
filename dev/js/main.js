@@ -41,7 +41,7 @@
     }
   });
 
-  define('main', ['collectionViews/NotiesCollectionView', 'marionette', 'router', 'socketio', 'helpers', 'backbone.iobind', 'backbone.stickit'], function(Notyfier, M, Router, io, helpers) {
+  define('main', ['marionette', 'router', 'socketio', 'helpers', 'backbone.iobind', 'backbone.stickit'], function(M, Router, io, helpers) {
     var Application;
 
     Application = (function() {

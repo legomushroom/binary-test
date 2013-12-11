@@ -2,7 +2,7 @@ define 'collections/PaginatedCollection', ['backbone', 'helpers'], (B, helpers)=
   class PaginatedCollection extends B.Collection
     page: 1
 
-    initialize: ->
+    initialize: (@o={})->
       @perPage = 2 #do -> if helpers.isMobile() then 4 else (if window.App.isDevMode then 4 else 8)
 
       # _.bindAll @, "parse", "url", "pageInfo", "nextPage", "previousPage"

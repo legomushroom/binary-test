@@ -4,7 +4,8 @@ define 'views/ProtoView', ['marionette'], (M)->
 		initialize:(@o={})->
 			@o.$el and @setElement @o.$el
 			super
-			@o.isRender and @render()
+			@o.isRender 	and @render()
+			@o.isAnimate 	and @animateIn()
 			@
 
 		animateIn:->

@@ -2,27 +2,27 @@
 html
 	head
 		meta(charset='UTF-8')
-		title iconmelon
+		title The Binary Cookbook
 		link(href="favicon.ico", rel="icon", type="image/png")
 		link(rel="stylesheet", type="text/css", href="css/main.css")
 
 		//- for Google 
-		meta(name='description', content='svg icons library for web')
-		meta(name='keywords', content='svg library, web, css managable')
+		meta(name='description', content='recipes')
+		meta(name='keywords', content='cookbook food recipes')
 		meta(name='author', content='LegoMushroom')
 		meta(name='copyright', content='LegoMushroom, MIT')
-		meta(name='application-name', content='iconmelon')
+		meta(name='application-name', content='the binary cookbook')
 		//- for Facebook 
-		meta(property='og:title', content='iconmelon')
+		meta(property='og:title', content='the binary cookbook')
 		meta(property='og:type', content='website')
-		meta(property='og:image', content='http://iconmelon.com/css/icons/logo-large.png')
-		meta(property='og:url', content='http://iconmelon.com')
-		meta(property='og:description', content='svg icons library for web')
+		meta(property='og:image', content='')
+		meta(property='og:url', content='')
+		meta(property='og:description', content='')
 		//- for Twitter 
 		meta(name='twitter:card', content='summary')
-		meta(name='twitter:title', content='iconmelon')
-		meta(name='twitter:description', content='svg icons library for web')
-		meta(name='twitter:image', content='http://iconmelon.com/css/icons/logo-large.png')
+		meta(name='twitter:title', content='the binary cookbook')
+		meta(name='twitter:description', content='')
+		meta(name='twitter:image', content='')
 
 	body
 		.blinded-e#js-blinded.h-gm
@@ -42,8 +42,14 @@ html
 
 		
 
-		script(id="pagination-template", type="template")
-			//- include templates/pagination
+		script(id="main-template", type="template")
+			include templates/main-page
+
+		script(id="recipe-template", type="template")
+			include templates/recipe
+
+		script(id="recipes-collection-template", type="template")
+			include templates/recipe-collection
 
 		script(type='text/javascript', src='js/lib/require.js', data-main='js/main')
 
