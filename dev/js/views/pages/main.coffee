@@ -10,7 +10,7 @@ define 'views/pages/main', ['views/pages/PageView', 'collectionViews/RecipesColl
 			@
 
 		renderRecipesList:->
-			@recipes = new RecipesCollection
+			@recipes = new RecipesCollection 
 											isPaginated: true
 											pageNum: 1
 			@recipes.fetch().then =>

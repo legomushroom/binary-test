@@ -22,7 +22,7 @@ define 'collections/PaginatedCollection', ['backbone', 'helpers', 'underscore'],
     fetchFun:(options)->
         options = { remove: false }
         @loadFromFile = if options?.sectionNames then true else false
-        Backbone.Collection::fetch.call(@, {data: ($.extend @options, options or {}), remove: false, reset: false })
+        Backbone.Collection::fetch.call(@, {data: ($.extend @options, options or {}) })
 
     parseFun: (resp) ->
       @options.total = resp.total if resp.total
