@@ -3,7 +3,7 @@
 
 ({
 	//- paths are relative to this app.build.js file
-	appDir: "../frontend",
+	appDir: "../dev",
 	baseUrl: "js",
 	//- this is the directory that the new files will be. it will be created if it doesn't exist
 	dir: "../dist",
@@ -25,9 +25,7 @@
             fileupload: 'lib/jquery.fileupload',
             'jquery.ui.widget': 'lib/jquery.ui.widget',
             stickIt: 'lib/backbone.stickit',
-            md5: 'lib/md5',
-            hammer:   'lib/hammer',
-            tween:    'lib/tween.min'
+            md5: 'lib/md5'
       },
       modules:[
             {name: "main"},

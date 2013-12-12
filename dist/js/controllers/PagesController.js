@@ -1,0 +1,1 @@
+(function(){define("controllers/PagesController",["views/pages/main"],function(e){var t;return t=function(){function t(){this.main=e}return t}(),new t})}).call(this);

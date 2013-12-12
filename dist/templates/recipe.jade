@@ -1,0 +1,32 @@
+.recipe-header-b.cf
+	.recipe-preview-e(style="background-image:url('css/i/<%= image %>')")
+	.header-be(contenteditable="<%= (isEditMode) %>", id="js-header") 			#{ '<%= header %>' }
+	.description-be(contenteditable="<%= (isEditMode) %>", id="js-description")  #{ '<%= description %>' }
+	.ago-be 				by 
+		a(href="<%= authorLink %>", target="_blank", class="is-hoverable", contenteditable="<%= (isEditMode) %>", id="js-author") #{ '<%= author %>' }
+		i ,  
+		i(contenteditable="<%= (isEditMode) %>", id="js-ago") #{ '<%= ago %>' }
+
+.recipe-body-b
+	.text-bl(contenteditable="<%= (isEditMode) %>", id="js-body") !{ '<%= text %>' }
+
+.side-icons-l(class="<%= (versions == false) ? 'is-no-timemachine' : '' %>")
+	.timer-b(title="estimated cook time")
+		.text-be(contenteditable="<%= (isEditMode) %>", id="js-estimated") #{ '<%= estimatedTime %>' }
+		- var data = { path: 'timer-icon' }
+		include ../css/partials/icon
+
+	- var data = { className: 'is-hoverable', idAttribute: 'js-edit', title: 'edit', path: 'pen-icon' }
+	include ../css/partials/icon
+
+	- var data = { className: 'is-hoverable', idAttribute: 'js-remove', title: 'remove', path: 'trash-icon' }
+	include ../css/partials/icon
+
+	- var data = { className: 'is-hoverable <%= (versions == false) ? "h-g-i" : "" %>', idAttribute: 'js-versions', title: 'previous versions', path: 'time-machine-icon' }
+	include ../css/partials/icon
+
+
+.cf
+	.btn-b.is-grey10#js-cancel   Cancel
+	.btn-b.is-inactive#js-save   Save
+

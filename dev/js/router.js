@@ -90,11 +90,7 @@
       };
 
       Router.prototype.animateHeader = function() {
-        var _this = this;
-
-        return setTimeout(function() {
-          return App.$mainHeader.addClass('animated fadeInDown');
-        }, 1000);
+        return App.$mainHeader.addClass('animated fadeInDown');
       };
 
       Router.prototype.showHeader = function() {

@@ -64,7 +64,7 @@
         App.iconsSelected = [];
         App.filtersSelected = [];
         App.isDevMode = window.location.href.match('localhost');
-        socketAdress = App.isDevMode ? 'http://localhost' : 'http://production-domain.com';
+        socketAdress = App.isDevMode ? 'http://localhost' : 'http://binary-cookbook.jit.su/';
         window.socket = io.connect(socketAdress);
         App.$window = $(window);
         this.$mainHeader = $('#js-main-header');
