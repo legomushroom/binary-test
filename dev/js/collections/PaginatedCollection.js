@@ -125,10 +125,6 @@
         });
       };
 
-      PaginatedCollection.prototype.clearSelectedIcons = function() {
-        return App.vent.trigger('icon:deselect');
-      };
-
       return PaginatedCollection;
 
     })(B.Collection);

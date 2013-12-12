@@ -56,7 +56,5 @@ define 'collections/PaginatedCollection', ['backbone', 'helpers', 'underscore'],
       return false if n is @options.page
       @options.page = n; @fetch().then => !@isClosed and @trigger 'afterFetch'
 
-    clearSelectedIcons:->
-      App.vent.trigger 'icon:deselect'
 
   PaginatedCollection
